@@ -1,4 +1,6 @@
+import type { Emoji } from 'emojibase'
 import type { CaseInsensitiveValue, SymbolCategories, SymbolSearchResult } from '../types'
+import data from 'emojibase-data/zh/data.json'
 import QuickLRU from 'quick-lru'
 import {
 
@@ -39,6 +41,7 @@ class CacheManager {
   static instance: CacheManager
   private lru: QuickLRU<string, SymbolData>
   private readonly CACHE_KEY: string = 'symbol_data'
+  private readonly officialData: Emoji[] = data
   private officialSymbols: string[] = []
   private customSymbols: string[] = []
 
@@ -136,6 +139,13 @@ class CacheManager {
     const categories = [category].flat().map(cat => cat.toUpperCase())
     const filteredData = data.filter(item => categories.includes(item.category.toUpperCase()))
     return Array.from(new Set(filteredData))
+  }
+
+  /**
+   * 获取官方数据
+   */
+  getOfficialData(): Emoji[] {
+    return this.officialData
   }
 
   /**

@@ -1,4 +1,5 @@
 import type { CoverageStats } from './cache'
+import type { Emoji } from 'emojibase'
 import type {
   AnyCase,
   CaseInsensitiveValue,
@@ -116,6 +117,13 @@ export function has<T extends SymbolCategories>(
     found,
     missing,
   }
+}
+
+/**
+ * 获取官方数据
+ */
+export function getOfficialData(): Emoji[] {
+  return cacheManager.getOfficialData()
 }
 
 /**
