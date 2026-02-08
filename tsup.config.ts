@@ -50,7 +50,7 @@ export default defineConfig({
    * - true: 启用压缩，减小文件体积
    * - false: 保留原始格式，便于阅读
    */
-  minify: false,
+  minify: true,
   /**
    * 外部依赖配置
    * - 指定不打包到最终文件中的模块

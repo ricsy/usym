@@ -7,12 +7,25 @@ import {
 } from '../index'
 
 /**
- * 创建状态消息
+ * 状态消息
+ * @param type 状态类型
+ * @param message 消息
+ * @param options 选项
+ * @param options.spacing 间隔，默认 1
+ * @param options.separator 分隔符
+ * @param options.formatter 格式化函数
+ * @returns 状态消息
  */
 export function createStatusMessage(
   type: StatusType,
   message: string,
+  options?: {
+    spacing?: number
+    separator?: string
+    formatter?: (message: string) => string
+  },
 ): string {
+  const { spacing = 1, separator, formatter } = options || {}
   const symbols = {
     success: SYMBOLS.STATUS.SUCCESS,
     error: SYMBOLS.STATUS.ERROR,
@@ -21,13 +34,19 @@ export function createStatusMessage(
     loading: SYMBOLS.TIME.HOURGLASS_DONE,
   }
 
-  return `${symbols[type]} ${message}`
+  const sep = separator ?? ' '.repeat(spacing)
+  const result = `${symbols[type]}${sep}${message}`
+  return formatter ? formatter(result) : result
 }
 
 /**
- * 创建进度条
+ * 进度条
+ * @param current 当前进度
+ * @param total 总进度
+ * @param length 进度条长度
+ * @param showPercentage 是否显示百分比
  */
-export function createProgressBar(
+export function progressBar(
   current: number,
   total: number,
   length: number = 20,
@@ -51,9 +70,9 @@ export function createProgressBar(
 }
 
 /**
- * 创建彩色状态指示
+ * 彩色状态指示
  */
-export function createColorStatus(
+export function colorStatus(
   color: ColorStatusType,
   text: string,
 ): string {
@@ -70,37 +89,4 @@ export function createColorStatus(
   }
 
   return `${colors[color]} ${text}`
-}
-
-/**
- * 创建带图标的标题
- */
-export function createIconTitle(
-  icon: string,
-  title: string,
-  separator: string = ' ',
-): string {
-  return `${icon}${separator}${title}`
-}
-
-/**
- * 创建列表项
- */
-export function createListItem(
-  icon: string,
-  text: string,
-  indent: number = 0,
-): string {
-  const indentStr = ' '.repeat(indent * 2)
-  return `${indentStr}${icon} ${text}`
-}
-
-/**
- * 创建分隔线
- */
-export function createDivider(
-  length: number = 40,
-  char: string = SYMBOLS.SHAPE.SQUARE_WHITE || '─',
-): string {
-  return char.repeat(length)
 }
