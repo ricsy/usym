@@ -14,9 +14,9 @@ import {
 } from '../types'
 
 /**
- * 官方数据
+ * emojibase 数据
  */
-export const OFFICIAL_DATA: SymbolSearchResult[] = data.map(item => ({
+export const EMOJIBASE_DATA: SymbolSearchResult[] = data.map(item => ({
   category: item.group as any,
   key: item.hexcode,
   symbol: item.emoji,
@@ -39,7 +39,7 @@ export const SYMBOLS_DATA: SymbolSearchResult[] = Object.entries(SYMBOLS).flatMa
  * 默认 Fuse 实例
  */
 export const defaultFuse = createFuse({
-  official: false,
+  useEmojiBase: false,
   config: {
     // 搜索字段
     keys: ['key', 'symbol', 'category'],
@@ -53,7 +53,7 @@ export const defaultFuse = createFuse({
 /**
  * 创建 Fuse 实例
  */
-export function createFuse(options?: Pick<SymbolSearchOptions, 'official' | 'config'>): Fuse<SymbolSearchResult> {
-  const { official = false, config } = options || {}
-  return config ? new Fuse(official ? OFFICIAL_DATA : SYMBOLS_DATA, config) : defaultFuse
+export function createFuse(options?: Pick<SymbolSearchOptions, 'useEmojiBase' | 'config'>): Fuse<SymbolSearchResult> {
+  const { useEmojiBase = false, config } = options || {}
+  return config ? new Fuse(useEmojiBase ? EMOJIBASE_DATA : SYMBOLS_DATA, config) : defaultFuse
 }

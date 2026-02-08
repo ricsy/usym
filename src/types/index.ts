@@ -60,9 +60,9 @@ export interface SymbolSearchResult {
 
 export interface SymbolSearchOptions {
   /**
-   * 是否搜索官方数据
+   * 是否使用 EmojiBase 数据
    */
-  official?: boolean
+  useEmojiBase?: boolean
   /**
    * 搜索配置
    */

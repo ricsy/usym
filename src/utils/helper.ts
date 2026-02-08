@@ -17,7 +17,7 @@ import {
 } from './cache'
 import {
   createFuse,
-  OFFICIAL_DATA,
+  EMOJIBASE_DATA,
   SYMBOLS_DATA,
 } from './fuse'
 
@@ -58,13 +58,13 @@ export function getFirst<T extends SymbolCategories>(
  * 搜索符号
  */
 export function search(query: string, options?: SymbolSearchOptions): SymbolSearchResult[] {
-  const { official = false, config, handler } = options || {}
+  const { useEmojiBase = false, config, handler } = options || {}
 
   if (!query.trim())
     return []
 
   return handler
-    ? handler(official ? OFFICIAL_DATA : SYMBOLS_DATA)
+    ? handler(useEmojiBase ? EMOJIBASE_DATA : SYMBOLS_DATA)
     : createFuse(config as any).search(query).map(result => result.item)
 }
 
@@ -120,10 +120,10 @@ export function has<T extends SymbolCategories>(
 }
 
 /**
- * 获取官方数据
+ * 获取 EmojiBase 数据
  */
-export function getOfficialData(): Emoji[] {
-  return cacheManager.getOfficialData()
+export function getEmojiBaseData(): Emoji[] {
+  return cacheManager.getEmojiBaseData()
 }
 
 /**
@@ -145,17 +145,17 @@ export function getCategories(): SymbolCategories[] {
  */
 export function getSymbols(official: boolean = false): string[] {
   return official
-    ? cacheManager.getData().officialSymbols
-    : cacheManager.getData().customSymbols
+    ? cacheManager.getData().emojiBaseSymbols
+    : cacheManager.getData().inlineSymbols
 }
 
 /**
  * 获取符号数量
  */
-export function count(official: boolean = false): number {
-  return official
-    ? cacheManager.getData().stats.totalOfficial
-    : cacheManager.getData().stats.totalCustom
+export function count(useEmojiBase: boolean = false): number {
+  return useEmojiBase
+    ? cacheManager.getData().stats.totalEmojiBase
+    : cacheManager.getData().stats.totalInline
 }
 
 /**

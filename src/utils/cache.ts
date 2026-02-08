@@ -8,14 +8,14 @@ import {
 
 } from '../types'
 import {
-  OFFICIAL_DATA,
+  EMOJIBASE_DATA,
   SYMBOLS_DATA,
 } from './fuse'
 import { logger } from './logger'
 
 export interface CoverageStats {
-  totalOfficial: number
-  totalCustom: number
+  totalEmojiBase: number
+  totalInline: number
   covered: number
   missing: number
   notInOfficial: number
@@ -28,8 +28,8 @@ export interface CustomData {
 }
 
 export interface SymbolData {
-  officialSymbols: string[]
-  customSymbols: string[]
+  emojiBaseSymbols: string[]
+  inlineSymbols: string[]
   stats: CoverageStats
   custom: CustomData
   missingSymbols: string[]
@@ -41,9 +41,9 @@ class CacheManager {
   static instance: CacheManager
   private lru: QuickLRU<string, SymbolData>
   private readonly CACHE_KEY: string = 'symbol_data'
-  private readonly officialData: Emoji[] = data
-  private officialSymbols: string[] = []
-  private customSymbols: string[] = []
+  private readonly emojiBaseData: Emoji[] = data
+  private emojiBaseSymbols: string[] = []
+  private inlineSymbols: string[] = []
 
   constructor() {
     this.lru = new QuickLRU<string, SymbolData>({
@@ -65,23 +65,23 @@ class CacheManager {
    * 计算符号数据
    */
   private computeSymbolData(): SymbolData {
-    const officialSymbols = this.getSymbols(true)
-    const customSymbols = this.getSymbols(false)
+    const emojiBaseSymbols = this.getSymbols(true)
+    const inlineSymbols = this.getSymbols(false)
 
-    const officialSet = new Set(officialSymbols)
-    const customSet = new Set(customSymbols)
+    const emojiBaseSet = new Set(emojiBaseSymbols)
+    const inlineSet = new Set(inlineSymbols)
 
-    const covered = officialSymbols.filter(symbol => customSet.has(symbol)).length
-    const notInOfficial = customSymbols.filter(symbol => !officialSet.has(symbol)).length
-    const missing = officialSet.size - covered
-    const rate = covered / officialSet.size
+    const covered = emojiBaseSymbols.filter(symbol => inlineSet.has(symbol)).length
+    const notInOfficial = inlineSymbols.filter(symbol => !emojiBaseSet.has(symbol)).length
+    const missing = emojiBaseSet.size - covered
+    const rate = covered / emojiBaseSet.size
 
     return {
-      officialSymbols,
-      customSymbols,
+      emojiBaseSymbols,
+      inlineSymbols,
       stats: {
-        totalOfficial: officialSet.size,
-        totalCustom: customSet.size,
+        totalEmojiBase: emojiBaseSet.size,
+        totalInline: inlineSet.size,
         covered,
         missing,
         notInOfficial,
@@ -91,8 +91,8 @@ class CacheManager {
       custom: {
         categories: Object.keys(SYMBOLS) as SymbolCategories[],
       },
-      missingSymbols: officialSymbols.filter(item => !customSet.has(item)),
-      coveredSymbols: customSymbols.filter(item => officialSet.has(item)),
+      missingSymbols: emojiBaseSymbols.filter(item => !inlineSet.has(item)),
+      coveredSymbols: inlineSymbols.filter(item => emojiBaseSet.has(item)),
       timestamp: Date.now(),
     }
   }
@@ -101,31 +101,29 @@ class CacheManager {
    * 获取分类中的所有符号
    */
   getSymbols<T extends SymbolCategories>(
-    categoryOrOfficial?: CaseInsensitiveValue<T> | boolean,
+    categoryOrUseEmojiBase?: CaseInsensitiveValue<T> | boolean,
   ): string[] {
     // 判断参数类型
-    if (typeof categoryOrOfficial === 'boolean' && categoryOrOfficial) {
-      if (this.officialSymbols.length > 0)
-        return this.officialSymbols
+    if (typeof categoryOrUseEmojiBase === 'boolean' && categoryOrUseEmojiBase) {
+      if (this.emojiBaseSymbols.length > 0)
+        return this.emojiBaseSymbols
 
-      // 布尔值：获取所有官方或自定义符号
-      const dataSource = categoryOrOfficial ? OFFICIAL_DATA : SYMBOLS_DATA
-      const result = dataSource.map(item => item.symbol)
-      this.officialSymbols = result
+      const result = EMOJIBASE_DATA.map(item => item.symbol)
+      this.emojiBaseSymbols = result
       return result
     }
 
-    if (this.customSymbols.length > 0)
-      return this.customSymbols
+    if (this.inlineSymbols.length > 0)
+      return this.inlineSymbols
 
     // 分类参数：获取特定分类的自定义符号
-    const category = categoryOrOfficial
+    const category = categoryOrUseEmojiBase
     const filteredData = category
       ? this.filterByCategory(SYMBOLS_DATA, category)
-      : SYMBOLS_DATA // 无参数时获取所有自定义符号
+      : SYMBOLS_DATA
 
     const result = filteredData.map(item => item.symbol)
-    this.customSymbols = result
+    this.inlineSymbols = result
     return result
   }
 
@@ -144,8 +142,8 @@ class CacheManager {
   /**
    * 获取官方数据
    */
-  getOfficialData(): Emoji[] {
-    return this.officialData
+  getEmojiBaseData(): Emoji[] {
+    return this.emojiBaseData
   }
 
   /**
