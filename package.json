@@ -1,0 +1,84 @@
+{
+  "name": "usym",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.28.2",
+  "description": "A comprehensive Unicode symbols library with full TypeScript support",
+  "author": "ricsy",
+  "license": "ISC",
+  "keywords": [
+    "typescript",
+    "javascript",
+    "dependencies",
+    "devDependencies",
+    "npm",
+    "github",
+    "analytics",
+    "dashboard",
+    "monitoring",
+    "trends",
+    "ranking",
+    "packages",
+    "popular-packages"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest",
+    "test:unit": "vitest run src/tests/unit",
+    "test:integration": "vitest run src/tests/integration",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "prepublishOnly": "npm run build",
+    "release": "np",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "consola": "^3.4.2",
+    "emojibase": "^17.0.0",
+    "emojibase-data": "^17.0.0",
+    "fuse.js": "^7.1.0",
+    "lodash-es": "^4.17.23",
+    "quick-lru": "^7.3.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.7.3",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^25.2.2",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-format": "^1.4.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-unused-imports": "^4.3.0",
+    "jiti": "^2.6.1",
+    "tslib": "^2.8.1",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "type-fest": "^5.4.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^4.0.18"
+  }
+}

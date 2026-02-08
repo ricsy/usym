@@ -1,0 +1,113 @@
+export const UI = {
+  // 导航
+  HOME: '🏠',
+  MENU: '☰',
+  MENU_VERTICAL: '⋮',
+  SETTINGS: '⚙️',
+  NAVIGATION: '🧭',
+
+  // 搜索
+  SEARCH: '🔍',
+  SEARCH_MINIMAL: '⌕',
+  ZOOM_IN: '🔎',
+
+  // 编辑
+  EDIT: '✏️',
+  HIGHLIGHTER: '🖍️',
+  ERASER: '🧽',
+  SCISSORS: '✂️',
+  BRUSH: '🖌️',
+  PAINT: '🎨',
+
+  // 文件操作
+  SAVE: '💾',
+  EXPORT: '📤',
+  IMPORT: '📥',
+  FOLDER: '📁',
+  FOLDER_OPEN: '📂',
+  FILE: '📄',
+  DOCUMENT: '📃',
+  ARCHIVE: '🗃️',
+  TRASH: '🗑️',
+  RECYCLE: '♻️',
+
+  // 视图控制
+  EYE_CLOSED: '👁️‍🗨️',
+  FULLSCREEN: '⛶',
+  FULLSCREEN_EXIT: '🗕',
+  LIST: '📋',
+  TABLE: '🗂️',
+
+  // 媒体控制
+  PLAY: '▶️',
+  PAUSE: '⏸️',
+  STOP: '⏹️',
+  RECORD: '⏺️',
+  SKIP_BACK: '⏮️',
+  SKIP_FORWARD: '⏭️',
+  REWIND: '⏪',
+  FAST_FORWARD: '⏩',
+  SHUFFLE: '🔀',
+  REPEAT: '🔁',
+  REPEAT_ONE: '🔂',
+  VOLUME_HIGH: '🔊',
+  VOLUME_LOW: '🔉',
+  VOLUME_MUTED: '🔇',
+  MICROPHONE: '🎤',
+  HEADPHONES: '🎧',
+  CAMERA: '📷',
+  VIDEO_CAMERA: '📹',
+
+  // 界面元素
+  CURSOR: '👆',
+  MOUSE: '🖱️',
+  KEYBOARD: '⌨️',
+  TOUCHSCREEN: '📱',
+  MONITOR: '🖥️',
+  LAPTOP: '💻',
+  PRINTER: '🖨️',
+  SCANNER: '📠',
+  PROJECTOR: '📽️',
+  SPEAKER: '🔈',
+  BATTERY: '🔋',
+  PLUG: '🔌',
+  TOOLBOX: '🧰',
+
+  // 表单元素
+  SLIDER: '🎚️',
+  KNOB: '🎛️',
+  BUTTON: '🔘',
+
+  // 信息显示
+  CHART_BAR: '📊',
+  CHART_LINE_UP: '📈',
+  CHART_LINE_DOWN: '📉',
+  ABACUS: '🧮',
+  MICROSCOPE: '🔬',
+  TELESCOPE: '🔭',
+  RULER: '📏',
+  PROTRACTOR: '📐',
+  SCALE: '⚖️',
+  THERMOMETER: '🌡️',
+
+  // 状态指示
+  TARGET: '🎯',
+  FLAG: '🚩',
+  PIN_LOCATION: '📍',
+  BOOKMARK: '🔖',
+  TAG: '🏷️',
+  BADGE: '🎖️',
+  RIBBON: '🎀',
+  TROPHY: '🏆',
+  MEDAL_GOLD: '🥇',
+  MEDAL_SILVER: '🥈',
+  MEDAL_BRONZE: '🥉',
+  CROWN: '👑',
+  GEM: '💎',
+  COIN: '🪙',
+  BANKNOTE: '💰',
+  LOCK: '🔒',
+  UNLOCK: '🔓',
+  KEY: '🔑',
+  SHIELD: '🛡️',
+} as const

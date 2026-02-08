@@ -1,0 +1,40 @@
+export const OBJECT = {
+  // 工具
+  HAMMER: '🔨',
+  HAMMER_PICK: '⚒️',
+  HAMMER_WRENCH: '🛠️',
+  PICK: '⛏️',
+  WRENCH: '🔧',
+  SCREWDRIVER: '🪛',
+  NUT_BOLT: '🔩',
+  COMPRESSION: '🗜️',
+  CHAINS: '⛓️',
+  HOOK: '🪝',
+  MAGNET: '🧲',
+  LADDER: '🪜',
+
+  // 武器
+  DAGGER: '🗡️',
+  SWORD: '⚔️',
+  GUN: '🔫',
+  BOW_ARROW: '🏹',
+  BOMB: '💣',
+  AXE: '🪓',
+
+  // 医疗
+  PILL: '💊',
+  SYRINGE: '💉',
+  DNA: '🧬',
+  TEST_TUBE: '🧪',
+  PETRI_DISH: '🧫',
+  STETHOSCOPE: '🩺',
+  X_RAY: '🩻',
+  CRUTCH: '🩼',
+  BANDAGE: '🩹',
+  MEDICAL_SYMBOL: '⚕️',
+  BACK: '🔙',
+  END: '🔚',
+  ON: '🔛',
+  SOON: '🔜',
+  TOP: '🔝',
+} as const
