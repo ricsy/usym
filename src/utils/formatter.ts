@@ -7,8 +7,8 @@ import {
 } from '../index'
 
 /**
- * 状态消息
- * @param type 状态类型
+ * 消息
+ * @param type 消息类型
  * @param message 消息
  * @param options 选项
  * @param options.spacing 间隔，默认 1
@@ -16,7 +16,7 @@ import {
  * @param options.formatter 格式化函数
  * @returns 状态消息
  */
-export function createStatusMessage(
+export function message(
   type: StatusType,
   message: string,
   options?: {
@@ -44,33 +44,44 @@ export function createStatusMessage(
  * @param current 当前进度
  * @param total 总进度
  * @param length 进度条长度
- * @param showPercentage 是否显示百分比
+ * @param options 选项
+ * @param options.openAndCloseTags 打开和关闭标签
+ * @param options.filledChar 填充字符
+ * @param options.emptyChar 空字符
+ * @param options.showPercentage 是否显示百分比
  */
 export function progressBar(
   current: number,
   total: number,
   length: number = 20,
-  showPercentage: boolean = true,
+  options?: {
+    openAndCloseTags?: [string, string]
+    filledChar?: string
+    emptyChar?: string
+    showPercentage: boolean
+  },
 ): string {
-  const percentage = Math.min(Math.max(current / total, 0), 1)
+  const { openAndCloseTags = ['[', ']'], showPercentage = false, filledChar = SYMBOLS.SHAPE.SQUARE, emptyChar = SYMBOLS.SHAPE.SQUARE_WHITE || '□' } = options || {}
+  const percentage = total > 0 ? Math.min(Math.max(current / total, 0), 1) : 0
   const filledLength = Math.round(percentage * length)
   const emptyLength = length - filledLength
 
-  const filledChar = SYMBOLS.SHAPE.SQUARE
-  const emptyChar = SYMBOLS.SHAPE.SQUARE_WHITE || '□'
-
   const bar = filledChar.repeat(filledLength) + emptyChar.repeat(emptyLength)
+  const [openTag, closeTag] = openAndCloseTags
+  const result = `${openTag}${bar}${closeTag}`
 
   if (showPercentage) {
     const percentageText = `${Math.round(percentage * 100)}%`
-    return `[${bar}] ${percentageText}`
+    return `${result} ${percentageText}`
   }
 
-  return `[${bar}]`
+  return result
 }
 
 /**
  * 彩色状态指示
+ * @param color 颜色类型
+ * @param text 文本
  */
 export function colorStatus(
   color: ColorStatusType,
