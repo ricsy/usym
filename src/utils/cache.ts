@@ -104,7 +104,7 @@ class CacheManager {
     categoryOrOfficial?: CaseInsensitiveValue<T> | boolean,
   ): string[] {
     // 判断参数类型
-    if (typeof categoryOrOfficial === 'boolean') {
+    if (typeof categoryOrOfficial === 'boolean' && categoryOrOfficial) {
       if (this.officialSymbols.length > 0)
         return this.officialSymbols
 
