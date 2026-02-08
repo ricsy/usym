@@ -82,18 +82,18 @@ console.log(`${UI.SETTINGS} Open settings`)
 
 ## 📁 Categories
 
-| Category       | Description                   | Examples       |
-| -------------- | ----------------------------- | -------------- |
-| **`STATUS`**   | Status indicators and markers | ✅ ❌ ⚠️ 🔄 ⏳ |
-| **`SHAPES`**   | Geometric shapes and colors   | 🔴 🟢 🔵 ⭐ ❤️ |
-| **`ARROWS`**   | Arrows and direction symbols  | ↑ ↓ ← → ↻ ↺    |
-| **`UI`**       | User interface elements       | ⚙️ 🔍 🏠 📁 💾 |
-| **`NATURE`**   | Nature, animals, and plants   | 🌳 🐱 🐶 🌈 🌊 |
-| **`EMOTIONS`** | Facial expressions and emojis | 😀 😢 😍 🤔 🎉 |
-| **`OBJECTS`**  | Objects, tools, and items     | 🔨 📁 💻 📱 🎵 |
+| Category       | Description                   | Examples        |
+|----------------|-------------------------------|-----------------|
+| **`STATUS`**   | Status indicators and markers | ✅ ❌ ⚠️ 🔄 ⏳     |
+| **`SHAPES`**   | Geometric shapes and colors   | 🔴 🟢 🔵 ⭐ ❤️   |
+| **`ARROWS`**   | Arrows and direction symbols  | ↑ ↓ ← → ↻ ↺     |
+| **`UI`**       | User interface elements       | ⚙️ 🔍 🏠 📁 💾  |
+| **`NATURE`**   | Nature, animals, and plants   | 🌳 🐱 🐶 🌈 🌊  |
+| **`EMOTIONS`** | Facial expressions and emojis | 😀 😢 😍 🤔 🎉  |
+| **`OBJECTS`**  | Objects, tools, and items     | 🔨 📁 💻 📱 🎵  |
 | **`TIME`**     | Time, dates, and weather      | 🕐 ☀️ 🌧️ ❄️ 📅 |
-| **`NETWORK`**  | Network and communication     | 📶 🔒 🌐 📡 🔑 |
-| **`MISC`**     | Miscellaneous symbols         | ∞ π € $ © ®    |
+| **`NETWORK`**  | Network and communication     | 📶 🔒 🌐 📡 🔑  |
+| **`MISC`**     | Miscellaneous symbols         | ∞ π € $ © ®     |
 
 ## 🛠️ Utility Functions
 

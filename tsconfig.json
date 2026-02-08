@@ -9,7 +9,7 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "types": ["node", "vite/client"],
+    "types": ["node"],
     "allowImportingTsExtensions": false,
 
     /* Linting */
@@ -20,7 +20,7 @@
     "declaration": true,
     "declarationDir": "./dist",
     "declarationMap": false,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "noEmit": false,
     "outDir": "./dist",
     "esModuleInterop": true,

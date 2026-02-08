@@ -18,7 +18,7 @@ export function createStatusMessage(
     error: SYMBOLS.STATUS.ERROR,
     warning: SYMBOLS.STATUS.WARNING,
     info: SYMBOLS.STATUS.INFO,
-    loading: SYMBOLS.STATUS.LOADING,
+    loading: SYMBOLS.TIME.HOURGLASS_DONE,
   }
 
   return `${symbols[type]} ${message}`
