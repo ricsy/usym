@@ -21,10 +21,10 @@
 
 ## ✨ Features
 
-- 🎯 **2000+ Symbols** - Comprehensive Unicode coverage with emojis, icons, and special characters
+- 🎯 **900+ Symbols** - Comprehensive Unicode coverage with emojis, icons, and special characters
 - 🔒 **Type Safe** - Full TypeScript support with autocomplete and type checking
 - 📦 **Tree Shakeable** - Import only what you need, zero dependencies
-- ⚡ **Zero Dependencies** - Lightweight and fast, no external dependencies
+- ⚡ **fewer Dependencies** - Lightweight and fast
 - 🎨 **Well Organized** - Symbols categorized logically for easy discovery
 - 🔧 **Utility Functions** - Helper functions for common symbol operations
 - 🌐 **Browser & Node** - Works in both browser and Node.js environments
@@ -48,7 +48,7 @@ import { SYMBOLS } from 'usym'
 
 // Status indicators
 console.log(`${SYMBOLS.STATUS.SUCCESS} Operation completed`)
-// => ✓ Operation completed
+// => ✅ Operation completed
 console.log(`${SYMBOLS.STATUS.ERROR} Something went wrong`)
 // => ❌ Something went wrong
 console.log(`${SYMBOLS.STATUS.WARNING} Please check configuration`)
@@ -58,80 +58,73 @@ console.log(`${SYMBOLS.STATUS.WARNING} Please check configuration`)
 ### Type-safe Access
 
 ```typescript
-import { getSymbol } from 'usym/utils'
-// Check if symbol exists
-import { hasSymbol } from 'usym/utils'
+import { Core } from 'usym'
 
 // Safe symbol retrieval with fallback
-const successIcon = getSymbol('STATUS', 'SUCCESS', '✓')
-const warningIcon = getSymbol('STATUS', 'WARNING', '⚠')
-if (hasSymbol('EMOTIONS', 'GRINNING')) {
+console.log(Core.get('STATUS', 'SUCCESS', '✓'))
+// => ✅
+console.log(Core.get('STATUS', 'WARNING', '⚠'))
+// => ⚠️
+if (Core.has('EMOTION', 'GRINNING')) {
   console.log('Grinning emoji is available!')
 }
-```
-
-### Import Specific Categories
-
-```typescript
-import { EMOTIONS, STATUS, UI } from 'usym/categories'
-
-console.log(`${STATUS.SUCCESS} Success!`)
-console.log(`${EMOTIONS.GRINNING} Welcome!`)
-console.log(`${UI.SETTINGS} Open settings`)
+// => Grinning emoji is available!
 ```
 
 ## 📁 Categories
 
-| Category       | Description                   | Examples        |
-|----------------|-------------------------------|-----------------|
-| **`STATUS`**   | Status indicators and markers | ✅ ❌ ⚠️ 🔄 ⏳     |
-| **`SHAPES`**   | Geometric shapes and colors   | 🔴 🟢 🔵 ⭐ ❤️   |
-| **`ARROWS`**   | Arrows and direction symbols  | ↑ ↓ ← → ↻ ↺     |
-| **`UI`**       | User interface elements       | ⚙️ 🔍 🏠 📁 💾  |
-| **`NATURE`**   | Nature, animals, and plants   | 🌳 🐱 🐶 🌈 🌊  |
-| **`EMOTIONS`** | Facial expressions and emojis | 😀 😢 😍 🤔 🎉  |
-| **`OBJECTS`**  | Objects, tools, and items     | 🔨 📁 💻 📱 🎵  |
-| **`TIME`**     | Time, dates, and weather      | 🕐 ☀️ 🌧️ ❄️ 📅 |
-| **`NETWORK`**  | Network and communication     | 📶 🔒 🌐 📡 🔑  |
-| **`MISC`**     | Miscellaneous symbols         | ∞ π € $ © ®     |
+| Category         | Description                                                     | Examples       |
+|------------------|-----------------------------------------------------------------|----------------|
+| **`ARROW`**      | Arrows and direction symbols                                    | ⬆️ ⬇️⬅️ ➡️ ↗️  |
+| **`DECORATIVE`** | Box-drawing and geometric decorative elements                   | ─ │ ┌ ▀ █      |
+| **`EMOTION`**    | Facial expressions and emojis                                   | 😀 😢 😍 🤔 🎉 |
+| **`MATH`**       | Mathematical operators, constants, and symbols                  | + − × ÷ =      |
+| **`NATURE`**     | Nature, animals, plants, and weather                            | 🌳 🐱 🌈 🌊 ☀️ |
+| **`NETWORK`**    | Network connectivity, security, and communication icons         | 📶 🔒 🌐 📡 🔑 |
+| **`OBJECT`**     | Common objects, tools, electronic devices, and items            | 🔨 🪛 🪝 🧲 🧪 |
+| **`SHAPE`**      | Geometric shapes, color blocks, and basic forms                 | 🔴 🟢 ⭐ ❤️ ⬛   |
+| **`STATUS`**     | Status indicators, markers, and feedback symbols                | ✅ ❌ ⚠️ 🔄 ⏳    |
+| **`TIME`**       | Time, dates, seasons, and calendar elements                     | 🕐 📅 ⌚ ⏱️ ⏰   |
+| **`UI`**         | User interface elements, controls, and actions                  | ⚙️ 🔍 🏠 💾 🎨 |
+| **`UNIT`**       | Measurement units, currency symbols, and mathematical constants | ℃ ℉ m  cm  mg  |
+
 
 ## 🛠️ Utility Functions
 
 ### Symbol Formatting
 
 ```typescript
-import { createProgressBar, createStatusMessage } from 'usym/utils'
-// Output: [███████████████░░░░] 75%
-// Create color-coded status
-import { createColorStatus } from 'usym/utils'
+import { Formatter } from 'usym'
 
 // Create formatted status messages
-const successMsg = createStatusMessage('success', 'File saved')
+console.log(Formatter.message('success', 'File saved'))
 // => ✅ File saved
-const errorMsg = createStatusMessage('error', 'Upload failed')
+console.log(Formatter.message('error', 'Upload failed'))
 // => ❌ Upload failed
-const loadingMsg = createStatusMessage('loading', 'Processing...')
-// => 🔄 Processing...
+console.log(Formatter.message('loading', 'Processing...'))
+// => ⌛ Processing...
 
 // Create progress bars
-const progress = createProgressBar(75, 100, 20)
-const onlineStatus = createColorStatus('green', 'Connected')
+console.log(Formatter.progressBar(75, 100, 20))
+// =>
+console.log(Formatter.colorStatus('green', 'Connected'))
 // => 🟢 Connected
-const offlineStatus = createColorStatus('red', 'Disconnected')
+console.log(Formatter.colorStatus('red', 'Disconnected'))
 // => 🔴 Disconnected
 ```
 
 ### Symbol Search
 
 ```typescript
-import { searchSymbols } from 'usym/utils'
+import { Core } from 'usym'
 
 // Search for symbols by name
-const results = searchSymbols('heart')
-// Returns: [{ category: 'SHAPES', key: 'HEART', symbol: '❤️' }, ...]
+console.log( Core.search('heart'))
+// => Returns: [{ category: 'SHAPE', key: 'HEART', symbol: '❤️', searchText: 'heart ❤️ shape' }, ...]
 
 // Search for specific symbols
-const smileResults = searchSymbols('smile')
+console.log( Core.search('hand'))
+// => Returns: [{ category: 'EMOTION', key: 'HAND_OK', symbol: '👌', searchText: 'hand_ok 👌 emotion' }, ...]
 ```
 
 ## 🤝 Contributing
